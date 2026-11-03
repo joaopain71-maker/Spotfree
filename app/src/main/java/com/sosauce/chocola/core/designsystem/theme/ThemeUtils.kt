@@ -1,5 +1,5 @@
-package com.sosauce.chocola.core.designsystem.theme
 
+package com.sosauce.chocola.core.designsystem.theme
 
 import android.os.Build
 import androidx.compose.material3.ColorScheme
@@ -8,40 +8,18 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
-import com.kmpalette.rememberDominantColorState
 
+private val SpotfreeCrimson = Color(0xFFFF123F)
 
 @Composable
 fun rememberSeedColor(
     isDark: Boolean,
     useMaterialArt: Boolean,
-    imageBitmap: ImageBitmap?
+    imageBitmap: androidx.compose.ui.graphics.ImageBitmap?
 ): Color {
-
-    val systemPrimary = if (isDark) anyDarkColorScheme().primary else anyLightColorScheme().primary
-
-    if (!useMaterialArt) return systemPrimary
-    if (imageBitmap == null) return systemPrimary
-
-    var seedColor by remember { mutableStateOf(systemPrimary) }
-    val dominantColorState = rememberDominantColorState()
-
-
-    LaunchedEffect(imageBitmap) {
-        dominantColorState.updateFrom(imageBitmap)
-        seedColor = dominantColorState.color
-    }
-
-    return seedColor
-
+    return SpotfreeCrimson
 }
 
 @Composable
@@ -65,3 +43,4 @@ fun anyDarkColorScheme(): ColorScheme {
         darkColorScheme()
     }
 }
+
